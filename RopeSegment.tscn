@@ -1,0 +1,39 @@
+[gd_scene load_steps=5 format=2]
+
+[sub_resource type="PhysicsMaterial" id=4]
+absorbent = true
+
+[sub_resource type="BoxShape" id=1]
+margin = 0.001
+extents = Vector3( 0.005, 0.025, 0.005 )
+
+[sub_resource type="CubeMesh" id=2]
+size = Vector3( 0.01, 0.05, 0.01 )
+
+[sub_resource type="SpatialMaterial" id=3]
+albedo_color = Color( 0.458824, 0.313726, 0.0862745, 1 )
+
+[node name="RopeSegment" type="RigidBody"]
+transform = Transform( 0.490235, 0.871591, 0, -0.87159, 0.490235, 0, 0, 0, 1, 0, 0, 0 )
+collision_layer = 2
+collision_mask = 2
+mass = 0.1
+physics_material_override = SubResource( 4 )
+axis_lock_angular_y = true
+angular_damp = 0.7
+
+[node name="PinJoint" type="PinJoint" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.025, 0 )
+nodes/node_b = NodePath("..")
+params/bias = 0.2
+
+[node name="CollisionShape" type="CollisionShape" parent="."]
+transform = Transform( 1, 0, 0, 7.45058e-09, 1, 0, 0, 0, 1, 0, 0, 0 )
+shape = SubResource( 1 )
+
+[node name="MeshInstance" type="MeshInstance" parent="CollisionShape"]
+mesh = SubResource( 2 )
+material/0 = SubResource( 3 )
+
+[node name="Tail" type="Spatial" parent="."]
+transform = Transform( 1, 2.98023e-08, 0, -2.98023e-08, 1, 0, 0, 0, 1, 0, -0.025, 0 )
