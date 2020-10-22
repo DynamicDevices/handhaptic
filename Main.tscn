@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=2]
+[gd_scene load_steps=39 format=2]
 
 [ext_resource path="res://Main.gd" type="Script" id=1]
 [ext_resource path="res://PlayerMe.gd" type="Script" id=2]
@@ -163,6 +163,17 @@ size = Vector3( 0.02, 0.002, 10 )
 [sub_resource type="SpatialMaterial" id=23]
 albedo_color = Color( 0.964706, 0, 0, 1 )
 
+[sub_resource type="SphereMesh" id=28]
+radius = 0.1
+height = 0.2
+
+[sub_resource type="SpatialMaterial" id=29]
+emission_enabled = true
+emission = Color( 0.92549, 0.952941, 0.0352941, 1 )
+emission_energy = 1.0
+emission_operator = 0
+emission_on_uv2 = false
+
 [node name="Main" type="Spatial"]
 script = ExtResource( 1 )
 hostipnumber = "192.168.1.127"
@@ -195,6 +206,7 @@ script = ExtResource( 7 )
 transform = Transform( -0.866514, 0, 0.499153, 0, 1, 0, -0.499153, 0, -0.866514, 0.432, 0.083, -0.76 )
 
 [node name="HandRight" type="Spatial" parent="Players/Doppelganger"]
+transform = Transform( 1, 0, -5.96046e-08, 0, 1, 0, 5.96046e-08, 0, 1, 0, 0.940959, 0 )
 script = ExtResource( 7 )
 
 [node name="Environment" type="Spatial" parent="."]
@@ -250,6 +262,7 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0167217, 0 )
 
 [node name="DirectionalLight" type="OmniLight" parent="."]
 transform = Transform( 0.873458, -0.310712, 0.374872, 0.0957231, 0.864473, 0.493481, -0.477397, -0.395151, 0.784824, -0.0269345, 1.7923, 0.839948 )
+visible = false
 shadow_enabled = true
 omni_range = 9.4
 omni_attenuation = 0.933033
@@ -330,6 +343,12 @@ material/0 = SubResource( 23 )
 
 [node name="OmniLight" type="OmniLight" parent="."]
 transform = Transform( 0.999305, 0, 0.037289, 0, 1, 0, -0.037289, 0, 0.999305, 1.76675, 3.38094, -2.47917 )
+shadow_enabled = true
+omni_range = 12.1
+
+[node name="MeshInstance" type="MeshInstance" parent="OmniLight"]
+mesh = SubResource( 28 )
+material/0 = SubResource( 29 )
 [connection signal="body_shape_entered" from="BodyObjects/Finger1/Area" to="BodyObjects" method="_on_Area_body_shape_entered"]
 [connection signal="body_shape_exited" from="BodyObjects/Finger1/Area" to="BodyObjects" method="_on_Area_body_shape_exited"]
 [connection signal="finished" from="BodyObjects/HissSound" to="BodyObjects" method="_on_HissSound_finished"]

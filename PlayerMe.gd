@@ -34,9 +34,9 @@ func initovrhandtracking(lovr_hand_tracking):
 	ovr_hand_tracking = lovr_hand_tracking
 	$HandLeft.initovrhandtracking(ovr_hand_tracking, $HandLeftController)
 	$HandRight.initovrhandtracking(ovr_hand_tracking, $HandRightController)
-	$HandLeft.addremotetransform("index_null", get_node("/root/Main/BodyObjects/Finger1"))
-	$HandLeft.addremotetransform("thumb_null", get_node("/root/Main/BodyObjects/Finger3"))
-	$HandLeft.addremotetransform("pinky_null", get_node("/root/Main/BodyObjects/Finger4"))
+	$HandLeft.Daddremotetransform("index_null", get_node("/root/Main/BodyObjects/Finger1"))
+	$HandLeft.Daddremotetransform("thumb_null", get_node("/root/Main/BodyObjects/Finger3"))
+	$HandLeft.Daddremotetransform("pinky_null", get_node("/root/Main/BodyObjects/Finger4"))
 		
 func _process(delta):
 	if ovr_hand_tracking != null:

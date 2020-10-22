@@ -187,6 +187,16 @@ func addremotetransform(bname, node, rtransform):
 	boneattachment.add_child(remotetransform)
 	remotetransform.remote_path = remotetransform.get_path_to(node)
 
+func Daddremotetransform(bname, node):
+	var boneattachment = BoneAttachment.new()
+	boneattachment.bone_name = ("b_l_" if islefthand else "b_r_") + bname
+	handskeleton.add_child(boneattachment)
+	var remotetransform = RemoteTransform.new()
+	remotetransform.update_scale = false
+	boneattachment.add_child(remotetransform)
+	remotetransform.remote_path = remotetransform.get_path_to(node)
+
+
 var timeoffset = -0.2
 # [ { "timestamp", "valid", "transform", "boneorientations" } ] 
 func process_handpositionstack(delta):
