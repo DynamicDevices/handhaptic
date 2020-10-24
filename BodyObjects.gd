@@ -22,7 +22,8 @@ func _on_Area_body_shape_entered(body_id, body, body_shape, area_shape):
 		$HissSound.global_transform.origin = $Finger1.global_transform.origin
 		$HissSound.play()
 		inbodyshape = true
-	
+		get_node("/root/Main/MQTTexperiment/mqttnode").publish("doesliverpool/handtouch", "1")
+
 func _on_Area_body_shape_exited(body_id, body, body_shape, area_shape):
 	print("   _on_Area_body_shape_exited", [body_id, body, body_shape, area_shape])
 	$Finger1/Area/CollisionShape/MeshInstance.get_surface_material(0).albedo_color = col1
